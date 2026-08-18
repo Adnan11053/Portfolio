@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adnan Rampurawala — Builder, IT Engineer</title>
+<meta name="description" content="Adnan Rampurawala — final-year B.Tech IT engineer in Mumbai. Building Startup Sphere, ProdHealth, Cue, and a smart traffic system.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#10131c;
+    --bg-alt:#151a25;
+    --panel:#181d29;
+    --text:#eeece5;
+    --muted:#8891a3;
+    --muted-dim:#5b6272;
+    --amber:#e8a33d;
+    --teal:#5fb8a8;
+    --line:rgba(238,236,229,0.09);
+    --line-strong:rgba(238,236,229,0.16);
+    --radius:10px;
+    --maxw:1080px;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--amber); color:#10131c;}
+
+  h1,h2,h3,h4{font-family:'Space Grotesk', sans-serif; font-weight:600; letter-spacing:-0.01em;}
+  .mono{font-family:'JetBrains Mono', monospace;}
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 28px;}
+
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.78rem;
+    color:var(--amber);
+    letter-spacing:0.04em;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:14px;
+  }
+  .eyebrow::before{content:"//"; color:var(--muted-dim);}
+
+  /* ---------- Nav ---------- */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    background:rgba(16,19,28,0.82);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    max-width:var(--maxw); margin:0 auto; padding:16px 28px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .brand{font-family:'JetBrains Mono', monospace; font-size:0.95rem; font-weight:600;}
+  .brand .dot{color:var(--amber);}
+  .navlinks{display:flex; gap:26px; font-family:'JetBrains Mono', monospace; font-size:0.82rem; color:var(--muted);}
+  .navlinks a{position:relative; padding:4px 0; transition:color .2s;}
+  .navlinks a:hover, .navlinks a:focus-visible{color:var(--text);}
+  .navlinks a::before{content:"$ "; color:var(--muted-dim);}
+  #menu-btn{display:none; background:none; border:1px solid var(--line-strong); color:var(--text); border-radius:6px; width:38px; height:38px; font-family:'JetBrains Mono',monospace; cursor:pointer;}
+  #mobile-nav{display:none; flex-direction:column; gap:2px; padding:6px 28px 18px; font-family:'JetBrains Mono', monospace; font-size:0.88rem; border-bottom:1px solid var(--line);}
+  #mobile-nav a{padding:10px 0; color:var(--muted); border-bottom:1px solid var(--line);}
+  #mobile-nav a:last-child{border-bottom:none;}
+  #mobile-nav.open{display:flex;}
+
+  @media (max-width:760px){
+    .navlinks{display:none;}
+    #menu-btn{display:block;}
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{padding:168px 0 96px; position:relative; overflow:hidden;}
+  .hero::before{
+    content:"";
+    position:absolute; top:-200px; right:-160px; width:520px; height:520px;
+    background:radial-gradient(circle, rgba(232,163,61,0.10), transparent 65%);
+    pointer-events:none;
+  }
+  .terminal{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.85rem;
+    color:var(--teal);
+    background:var(--panel);
+    border:1px solid var(--line-strong);
+    border-radius:var(--radius);
+    padding:16px 20px;
+    display:inline-block;
+    margin-bottom:34px;
+  }
+  .terminal .prompt{color:var(--amber);}
+  .terminal .cursor{
+    display:inline-block; width:8px; height:1em; background:var(--teal);
+    vertical-align:text-bottom; margin-left:2px;
+    animation:blink 1s steps(1) infinite;
+  }
+  @keyframes blink{50%{opacity:0;}}
+
+  .hero h1{
+    font-size:clamp(2.4rem, 6vw, 4.4rem);
+    line-height:1.04;
+    max-width:820px;
+  }
+  .hero h1 .accent{color:var(--amber);}
+  .hero .lede{
+    max-width:600px; margin-top:24px; font-size:1.12rem; color:var(--muted);
+  }
+  .hero-actions{display:flex; flex-wrap:wrap; gap:14px; margin-top:36px;}
+  .btn{
+    font-family:'JetBrains Mono', monospace; font-size:0.85rem;
+    padding:12px 22px; border-radius:8px; border:1px solid var(--line-strong);
+    transition:all .18s; display:inline-flex; align-items:center; gap:8px;
+  }
+  .btn-primary{background:var(--amber); color:#10131c; border-color:var(--amber); font-weight:600;}
+  .btn-primary:hover{background:#f3b455;}
+  .btn-ghost:hover{border-color:var(--amber); color:var(--amber);}
+
+  .hero-meta{
+    margin-top:64px; display:grid; grid-template-columns:repeat(3,1fr); gap:24px;
+    border-top:1px solid var(--line); padding-top:28px; max-width:720px;
+  }
+  .hero-meta div .num{font-family:'Space Grotesk',sans-serif; font-size:1.7rem; color:var(--text);}
+  .hero-meta div .label{font-family:'JetBrains Mono',monospace; font-size:0.72rem; color:var(--muted); margin-top:4px;}
+
+  /* ---------- Sections generic ---------- */
+  section{padding:88px 0; border-top:1px solid var(--line);}
+  .section-head{display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:44px; flex-wrap:wrap; gap:12px;}
+  .section-head h2{font-size:clamp(1.6rem,3.4vw,2.2rem);}
+  .section-tag{font-family:'JetBrains Mono',monospace; font-size:0.76rem; color:var(--muted-dim);}
+
+  .reveal{opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  /* ---------- About ---------- */
+  .about-grid{display:grid; grid-template-columns:1.3fr 1fr; gap:56px;}
+  .about-grid p{margin-bottom:16px; color:var(--muted); max-width:52ch;}
+  .about-grid p strong{color:var(--text); font-weight:500;}
+  .facts{display:flex; flex-direction:column; gap:0; border:1px solid var(--line); border-radius:var(--radius); overflow:hidden;}
+  .fact{display:flex; justify-content:space-between; padding:14px 18px; border-bottom:1px solid var(--line); font-size:0.9rem;}
+  .fact:last-child{border-bottom:none;}
+  .fact .k{font-family:'JetBrains Mono',monospace; color:var(--muted-dim); font-size:0.78rem; text-transform:uppercase; letter-spacing:0.03em;}
+  .fact .v{color:var(--text); text-align:right;}
+
+  @media (max-width:760px){.about-grid{grid-template-columns:1fr;}}
+
+  /* ---------- Timeline (education + experience) ---------- */
+  .timeline{position:relative; padding-left:28px; border-left:1px solid var(--line-strong);}
+  .tl-item{position:relative; padding-bottom:40px;}
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-item::before{
+    content:""; position:absolute; left:-33px; top:4px; width:9px; height:9px; border-radius:50%;
+    background:var(--bg); border:2px solid var(--amber);
+  }
+  .tl-date{font-family:'JetBrains Mono',monospace; font-size:0.76rem; color:var(--teal); margin-bottom:6px;}
+  .tl-item h3{font-size:1.15rem; margin-bottom:3px;}
+  .tl-org{color:var(--muted); font-size:0.92rem; margin-bottom:10px;}
+  .tl-item p.desc{color:var(--muted); font-size:0.92rem; max-width:60ch;}
+  .tl-tags{display:flex; flex-wrap:wrap; gap:8px; margin-top:12px;}
+  .pill{
+    font-family:'JetBrains Mono',monospace; font-size:0.72rem; color:var(--muted);
+    border:1px solid var(--line-strong); border-radius:20px; padding:4px 11px;
+  }
+
+  /* ---------- Projects / build log ---------- */
+  .log{display:flex; flex-direction:column; gap:0;}
+  .log-item{
+    display:grid; grid-template-columns:120px 1fr; gap:24px;
+    padding:28px 0; border-bottom:1px solid var(--line);
+  }
+  .log-item:first-child{padding-top:0;}
+  .log-item:last-child{border-bottom:none;}
+  .log-ver{font-family:'JetBrains Mono',monospace; font-size:0.8rem; color:var(--amber); padding-top:3px;}
+  .log-ver .hash{display:block; color:var(--muted-dim); font-size:0.72rem; margin-top:6px;}
+  .log-body h3{font-size:1.28rem; margin-bottom:8px;}
+  .log-body .status{font-family:'JetBrains Mono',monospace; font-size:0.68rem; padding:2px 8px; border-radius:4px; margin-left:10px; vertical-align:middle;}
+  .status.feat{background:rgba(95,184,168,0.14); color:var(--teal);}
+  .status.wip{background:rgba(232,163,61,0.14); color:var(--amber);}
+  .log-body p{color:var(--muted); max-width:64ch; margin-bottom:14px; font-size:0.95rem;}
+  .log-tags{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px;}
+  .log-links{display:flex; gap:18px; font-family:'JetBrains Mono',monospace; font-size:0.8rem;}
+  .log-links a{color:var(--teal); border-bottom:1px solid transparent;}
+  .log-links a:hover{border-color:var(--teal);}
+
+  @media (max-width:640px){
+    .log-item{grid-template-columns:1fr; gap:8px;}
+  }
+
+  /* ---------- Skills ---------- */
+  .pkg{
+    background:var(--panel); border:1px solid var(--line-strong); border-radius:var(--radius);
+    padding:26px 28px; font-family:'JetBrains Mono',monospace; font-size:0.86rem;
+  }
+  .pkg-title{color:var(--muted-dim); margin-bottom:14px;}
+  .pkg-row{display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px dashed var(--line);}
+  .pkg-row:last-child{border-bottom:none;}
+  .pkg-row .k{color:var(--text);}
+  .pkg-row .v{color:var(--teal);}
+  .skills-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+  @media (max-width:860px){.skills-grid{grid-template-columns:1fr;}}
+
+  /* ---------- Certifications ---------- */
+  .certs{display:grid; grid-template-columns:repeat(2,1fr); gap:16px;}
+  @media (max-width:700px){.certs{grid-template-columns:1fr;}}
+  .cert{
+    border:1px solid var(--line); border-radius:var(--radius); padding:18px 20px;
+    display:flex; gap:14px; align-items:flex-start;
+  }
+  .cert .mark{font-family:'JetBrains Mono',monospace; color:var(--amber); font-size:0.9rem;}
+  .cert h4{font-size:0.96rem; margin-bottom:4px;}
+  .cert p{font-size:0.82rem; color:var(--muted);}
+
+  /* ---------- Contact ---------- */
+  .contact-panel{
+    background:var(--panel); border:1px solid var(--line-strong); border-radius:14px;
+    padding:52px 44px; text-align:left;
+  }
+  .contact-panel h2{font-size:clamp(1.7rem,4vw,2.6rem); max-width:600px; margin-bottom:16px;}
+  .contact-panel p{color:var(--muted); max-width:520px; margin-bottom:32px;}
+  .contact-rows{display:flex; flex-wrap:wrap; gap:14px;}
+
+  footer{padding:32px 0; border-top:1px solid var(--line);}
+  .footer-row{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;
+    font-family:'JetBrains Mono',monospace; font-size:0.76rem; color:var(--muted-dim);}
+  .footer-row a{color:var(--muted); transition:color .2s;}
+  .footer-row a:hover{color:var(--amber);}
+  .footer-links{display:flex; gap:18px;}
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal{transition:none; opacity:1; transform:none;}
+    .cursor{animation:none;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a href="#home" class="brand">adnan<span class="dot">.</span>dev</a>
+    <nav class="navlinks">
+      <a href="#about">about</a>
+      <a href="#experience">experience</a>
+      <a href="#projects">projects</a>
+      <a href="#skills">skills</a>
+      <a href="#contact">contact</a>
+      <a href="resume.pdf" target="_blank" rel="noopener" style="color:var(--amber);">resume</a>
+    </nav>
+    <button id="menu-btn" aria-label="Toggle menu" aria-expanded="false">☰</button>
+  </div>
+  <div id="mobile-nav">
+    <a href="#about">about</a>
+    <a href="#education">education</a>
+    <a href="#experience">experience</a>
+    <a href="#projects">projects</a>
+    <a href="#skills">skills</a>
+    <a href="#contact">contact</a>
+    <a href="resume.pdf" target="_blank" rel="noopener">resume</a>
+  </div>
+</header>
+
+<main>
+  <!-- Hero -->
+  <section id="home" class="hero" style="border-top:none;">
+    <div class="wrap">
+      <div class="terminal">
+        <span class="prompt">adnan@mumbai</span>:~$ whoami<span class="cursor"></span>
+      </div>
+      <h1>B.Tech IT engineer, <span class="accent">final year.</span><br>Ships full-stack products, not slide decks.</h1>
+      <p class="lede">I'm Adnan Rampurawala, based in Mumbai. I build production SaaS, freelance on live client systems, and run an AI/ML research project on the side — currently finishing my degree at KJSIT.</p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-primary">See what I've shipped →</a>
+        <a href="resume.pdf" target="_blank" rel="noopener" class="btn btn-ghost">↓ Download resume</a>
+        <a href="mailto:adnan.mr@somaiya.edu" class="btn btn-ghost">adnan.mr@somaiya.edu</a>
+      </div>
+      <div class="hero-meta">
+        <div>
+          <div class="num">8.65</div>
+          <div class="label">CGPA / 10, 6 SEMESTERS</div>
+        </div>
+        <div>
+          <div class="num">6+</div>
+          <div class="label">PRODUCTS SHIPPED</div>
+        </div>
+        <div>
+          <div class="num">3</div>
+          <div class="label">INTERNSHIPS / FREELANCE ROLES</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <div class="wrap">
+      <div class="eyebrow">about</div>
+      <div class="section-head"><h2>Building at the intersection of AI and real business problems.</h2></div>
+      <div class="about-grid reveal">
+        <div>
+          <p>I'm a final-year <strong>B.Tech in Information Technology</strong> student at K.J. Somaiya Institute of Technology, Mumbai, and I spend most of my time outside class building things that ship — not just class projects.</p>
+          <p>Right now that means <strong>Startup Sphere</strong>, an AI-powered business management platform I'm building for SMBs, alongside freelance development work and a Mumbai-based smart traffic management research project that's headed for publication.</p>
+          <p>I've interned on AI trend-analysis systems, picked up four AI/ML certifications along the way, and I'm just as comfortable writing a GST automation rule as I am training a vehicle-detection model.</p>
+        </div>
+        <div class="facts">
+          <div class="fact"><span class="k">Based in</span><span class="v">Mumbai, India</span></div>
+          <div class="fact"><span class="k">Degree</span><span class="v">B.Tech, Information Technology</span></div>
+          <div class="fact"><span class="k">Institute</span><span class="v">KJ Somaiya Institute of Technology</span></div>
+          <div class="fact"><span class="k">Currently</span><span class="v">Freelance dev @ AdScale Agency</span></div>
+          <div class="fact"><span class="k">Building</span><span class="v">Startup Sphere (SaaS)</span></div>
+          <div class="fact"><span class="k">Email</span><span class="v">adnan.mr@somaiya.edu</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section id="education">
+    <div class="wrap">
+      <div class="eyebrow">education</div>
+      <div class="section-head"><h2>Academic record</h2></div>
+      <div class="timeline reveal">
+        <div class="tl-item">
+          <div class="tl-date">2023 — Present</div>
+          <h3>B.Tech, Information Technology</h3>
+          <div class="tl-org">KJ Somaiya Institute of Technology (KJSIT), Mumbai</div>
+          <p class="desc">Final-year student. Aggregate CGPA of 8.65/10 across six semesters.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">2021 — Feb 2023</div>
+          <h3>HSC (11th–12th)</h3>
+          <div class="tl-org">Kishinchand Chellaram (K.C.) College</div>
+          <p class="desc">Scored 62.83%.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">Completed May 2021</div>
+          <h3>SSC</h3>
+          <div class="tl-org">Saifee High School</div>
+          <p class="desc">Scored 80%.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section id="experience">
+    <div class="wrap">
+      <div class="eyebrow">experience</div>
+      <div class="section-head"><h2>Where I've worked</h2></div>
+      <div class="timeline reveal">
+        <div class="tl-item">
+          <div class="tl-date">2025 — Present</div>
+          <h3>Freelance Developer</h3>
+          <div class="tl-org">AdScale Agency</div>
+          <p class="desc">Building a CRM with an automated lead-generation pipeline, a Kanban board for managing leads, and automated outreach over WhatsApp and email.</p>
+          <div class="tl-tags"><span class="pill">CRM</span><span class="pill">Automation</span><span class="pill">WhatsApp API</span><span class="pill">MCP</span></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">Dec 2025 — Jan 2026</div>
+          <h3>Gen AI Intern</h3>
+          <div class="tl-org">Claidroid Technologies Pvt Ltd (via KJSIT, winter internship)</div>
+          <p class="desc">Designed a trend-analysis bot that identifies and summarizes emerging trends from real-time data. Built the data collection/preprocessing pipeline and applied ML/NLP techniques plus agentic decision-making logic to improve detection accuracy.</p>
+          <div class="tl-tags"><span class="pill">Python</span><span class="pill">NLP</span><span class="pill">Grok API</span><span class="pill">Data pipelines</span></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">Jun 2025 — Jul 2025</div>
+          <h3>AI Intern</h3>
+          <div class="tl-org">Edunet Foundation, in collaboration with IBM SkillsBuild</div>
+          <p class="desc">Virtual internship covering hands-on AI/ML projects, mentor-guided technical sessions, and team-based project work, capped by a final project presentation.</p>
+          <div class="tl-tags"><span class="pill">Python</span><span class="pill">AI/ML fundamentals</span><span class="pill">SkillsBuild</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects">
+    <div class="wrap">
+      <div class="eyebrow">projects</div>
+      <div class="section-head">
+        <h2>Build log</h2>
+        <div class="section-tag">git log --oneline --shipped</div>
+      </div>
+
+      <div class="log reveal">
+
+        <div class="log-item">
+          <div class="log-ver">v4.0.0<span class="hash">startup-sphere</span></div>
+          <div class="log-body">
+            <h3>Startup Sphere <span class="status wip">in progress</span></h3>
+            <p>An AI-powered business management SaaS for SMBs and startups — WhatsApp invoice sharing, AI shelf-photo-to-inventory import, bill OCR, voice input across Indian languages, GST automation, and AI-generated social content, with a three-tier Admin → Owner → Employee permission system.</p>
+            <div class="log-tags"><span class="pill">Next.js</span><span class="pill">Supabase</span><span class="pill">TypeScript</span><span class="pill">Groq AI</span><span class="pill">Shadcn UI</span></div>
+            <div class="log-links">
+              <a href="https://startup-sphere-three.vercel.app/" target="_blank" rel="noopener">Live app ↗</a>
+              <a href="https://github.com/Adnan11053/StartupSphere-copy" target="_blank" rel="noopener">GitHub ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="log-item">
+          <div class="log-ver">v1.2.0<span class="hash">cue</span></div>
+          <div class="log-body">
+            <h3>Cue <span class="status feat">live</span></h3>
+            <p>A free web app that teaches people to write clearer AI prompts through hands-on, real-life scenarios — instant AI feedback with a score and a stronger rewrite, eight lessons across three difficulty steps, and no account required.</p>
+            <div class="log-tags"><span class="pill">Prompt engineering</span><span class="pill">AI feedback loop</span><span class="pill">No-signup UX</span></div>
+            <div class="log-links">
+              <a href="https://cue-psi-rust.vercel.app/" target="_blank" rel="noopener">Live app ↗</a>
+              <a href="https://github.com/Adnan11053/CUE" target="_blank" rel="noopener">GitHub ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="log-item">
+          <div class="log-ver">v1.0.0<span class="hash">prodhealth</span></div>
+          <div class="log-body">
+            <h3>ProdHealth <span class="status feat">shipped</span></h3>
+            <p>An AI-powered food analysis platform for transparent, informed food choices. Decodes packaged-food ingredient lists via barcode or search lookup against the Open Food Facts database plus an in-house enrichment layer, and flags harmful or unhealthy additives in plain language. An ML model for personalized health ratings — tuned to individual dietary needs like diabetes — is in the works.</p>
+            <div class="log-tags"><span class="pill">MongoDB</span><span class="pill">Express</span><span class="pill">React</span><span class="pill">Node.js</span></div>
+            <div class="log-links">
+              <a href="https://prod-health.vercel.app/" target="_blank" rel="noopener">Live app ↗</a>
+              <a href="https://github.com/Adnan11053/ProdHealth" target="_blank" rel="noopener">GitHub ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="log-item">
+          <div class="log-ver">v0.9.0<span class="hash">traffic-mgmt</span></div>
+          <div class="log-body">
+            <h3>Smart Traffic Management System <span class="status wip">research</span></h3>
+            <p>A Mumbai-based vehicle detection and traffic management system, built with the frontend and software complete. Being written up as a research paper, so every model decision needs scientific justification — currently refining detection accuracy and building out the IoT component.</p>
+            <div class="log-tags"><span class="pill">Computer Vision</span><span class="pill">Research</span><span class="pill">IoT</span></div>
+          </div>
+        </div>
+
+        <div class="log-item">
+          <div class="log-ver">v1.0.0<span class="hash">ngo-nexus</span></div>
+          <div class="log-body">
+            <h3>NGO Nexus <span class="status feat">shipped</span></h3>
+            <p>A web platform connecting NGOs with volunteers. Individuals register and join NGO-led events; NGOs get their own registration and event-management tools.</p>
+            <div class="log-tags"><span class="pill">HTML/CSS</span><span class="pill">Java Spring Boot</span><span class="pill">MySQL</span></div>
+            <div class="log-links"><a href="https://github.com/Adnan11053/ngonexus" target="_blank" rel="noopener">GitHub ↗</a></div>
+          </div>
+        </div>
+
+        <div class="log-item">
+          <div class="log-ver">v1.0.0<span class="hash">campus-map</span></div>
+          <div class="log-body">
+            <h3>Interactive Campus Map <span class="status feat">shipped</span></h3>
+            <p>A web-based navigation app giving turn-by-turn directions to classrooms across the college's staircases and floors — built in second year.</p>
+            <div class="log-tags"><span class="pill">JavaScript</span><span class="pill">Firebase</span><span class="pill">Google Maps API</span></div>
+            <div class="log-links">
+              <a href="https://adnan11053.github.io/Campus-map/" target="_blank" rel="noopener">Live ↗</a>
+              <a href="https://github.com/Adnan11053/Campus-map" target="_blank" rel="noopener">GitHub ↗</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills">
+    <div class="wrap">
+      <div class="eyebrow">skills</div>
+      <div class="section-head"><h2>Stack &amp; tooling</h2></div>
+      <div class="skills-grid reveal">
+        <div class="pkg">
+          <div class="pkg-title">languages.json</div>
+          <div class="pkg-row"><span class="k">python</span><span class="v">^strong</span></div>
+          <div class="pkg-row"><span class="k">java</span><span class="v">^strong</span></div>
+          <div class="pkg-row"><span class="k">javascript/typescript</span><span class="v">^strong</span></div>
+          <div class="pkg-row"><span class="k">c++</span><span class="v">^solid</span></div>
+          <div class="pkg-row"><span class="k">sql</span><span class="v">^strong</span></div>
+        </div>
+        <div class="pkg">
+          <div class="pkg-title">stack.json</div>
+          <div class="pkg-row"><span class="k">next.js / react</span><span class="v">production</span></div>
+          <div class="pkg-row"><span class="k">supabase / mongodb</span><span class="v">production</span></div>
+          <div class="pkg-row"><span class="k">node.js / express</span><span class="v">production</span></div>
+          <div class="pkg-row"><span class="k">tailwindcss</span><span class="v">production</span></div>
+          <div class="pkg-row"><span class="k">groq ai api</span><span class="v">production</span></div>
+        </div>
+        <div class="pkg">
+          <div class="pkg-title">tooling.json</div>
+          <div class="pkg-row"><span class="k">git</span><span class="v">daily</span></div>
+          <div class="pkg-row"><span class="k">prompt engineering</span><span class="v">daily</span></div>
+          <div class="pkg-row"><span class="k">data analysis</span><span class="v">regular</span></div>
+          <div class="pkg-row"><span class="k">ui/ux + graphic design</span><span class="v">regular</span></div>
+          <div class="pkg-row"><span class="k">agentic build tools</span><span class="v">regular</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications -->
+  <section id="certifications">
+    <div class="wrap">
+      <div class="eyebrow">certifications</div>
+      <div class="section-head"><h2>Credentials</h2></div>
+      <div class="certs reveal">
+        <div class="cert">
+          <span class="mark">✓</span>
+          <div><h4>AI Fundamentals</h4><p>IBM SkillsBuild, earned during the Edunet Foundation AI internship</p></div>
+        </div>
+        <div class="cert">
+          <span class="mark">✓</span>
+          <div><h4>Python for Data Science</h4><p>IBM — programming, data science, data structures, and data distribution</p></div>
+        </div>
+        <div class="cert">
+          <span class="mark">✓</span>
+          <div><h4>OCI AI Foundations Associate</h4><p>Oracle — AI/ML basics on OCI, end-to-end data pipelines, and OCI's AI integration tools</p></div>
+        </div>
+        <div class="cert">
+          <span class="mark">✓</span>
+          <div><h4>Introduction to AI</h4><p>Google Cloud</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="wrap">
+      <div class="contact-panel reveal">
+        <div class="eyebrow" style="margin-bottom:8px;">contact</div>
+        <h2>Building something? Let's talk.</h2>
+        <p>Open to freelance work, internships, jobs and collaborations — reach out directly.</p>
+        <div class="contact-rows">
+          <a href="mailto:adnan.mr@somaiya.edu" class="btn btn-primary">✉ adnan.mr@somaiya.edu</a>
+          <a href="mailto:adnanrampurawala99@gmail.com" class="btn btn-primary">✉ adnanrampurawala99@gmail.com</a>
+          <a href="tel:+917738189128" class="btn btn-ghost">📞 +91 77381 89128</a>
+          <a href="resume.pdf" target="_blank" rel="noopener" class="btn btn-ghost">↓ Resume (PDF)</a>
+          <a href="https://github.com/Adnan11053" target="_blank" rel="noopener" class="btn btn-ghost">GitHub ↗</a>
+          <a href="https://www.linkedin.com/in/adnan-rampurawala-944aa8327" target="_blank" rel="noopener" class="btn btn-ghost">LinkedIn ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap footer-row">
+    <span>© 2026 Adnan Rampurawala — built in Mumbai.</span>
+    <div class="footer-links">
+      <a href="https://github.com/Adnan11053" target="_blank" rel="noopener">github</a>
+      <a href="https://www.linkedin.com/in/adnan-rampurawala-944aa8327" target="_blank" rel="noopener">linkedin</a>
+      <a href="https://www.instagram.com/adnanmoizz" target="_blank" rel="noopener">instagram</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const menuBtn = document.getElementById('menu-btn');
+  const mobileNav = document.getElementById('mobile-nav');
+  menuBtn.addEventListener('click', () => {
+    const open = mobileNav.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', open);
+  });
+  mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    mobileNav.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded', false);
+  }));
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
